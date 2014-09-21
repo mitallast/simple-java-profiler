@@ -66,7 +66,7 @@ public class SimpleClassTransformer implements ClassFileTransformer {
                 }
                 int methodId = SimpleProfiler.instance.registerMethod(ctMethod);
                 ctMethod.insertBefore("org.mitallast.SimpleProfiler.instance.push(" + classId + "," + methodId + ", System.nanoTime());");
-                ctMethod.insertAfter("org.mitallast.SimpleProfiler.instance.pop(" + classId + "," + methodId + ", System.nanoTime());");
+                ctMethod.insertAfter("org.mitallast.SimpleProfiler.instance.pop(" + classId + "," + methodId + ", System.nanoTime());", true);
                 ctMethod.getMethodInfo().rebuildStackMap(classPool);
             }
             return ctClass.toBytecode();
